@@ -5,7 +5,7 @@ from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
 
-df = pd.read_csv('https://raw.githubusercontent.com/gokulac/stock-plot/master/returns.csv?token=ANAPWZ4A4OGZQ4EIUKJUOATA3M2ES')
+df = pd.read_csv('https://raw.githubusercontent.com/gokulac/my-plotly/master/data.csv')
 
 app = dash.Dash(__name__)
 
@@ -19,9 +19,9 @@ app.layout = html.Div([
     [Input("btn", "n_clicks")])
 def display_graph(n_clicks):
     if n_clicks % 2 == 0:
-        x, y = 'AAPL_x', 'AAPL_y'
+        x, y = 'date', 'returns'
     else:
-        x, y = 'AAPL_y', 'AAPL_x'
+        x, y = 'returns', 'date'
 
     fig = px.line(df, x=x, y=y)    
     return fig
